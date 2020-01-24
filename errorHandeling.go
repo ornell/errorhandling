@@ -1,20 +1,18 @@
 package errorHandeling
 
-import "log"
+import (
+	"fmt"
+)
 
-func FailOnError(err error, msg string) {
+func ErrorPrint(err error, comment string){
 	if err != nil {
-		log.Fatalf("%s: %s", msg, err)
+		fmt.Errorf(comment+" %v", err)
 	}
 }
 
-func ErrorPrint(err error){
+func ErrorPanic(err error, comment string){
 	if err != nil {
-		log.Print(err.Error())
-	}
-}
-func ErrorPanic(err error){
-	if err != nil {
-		panic(err.Error()) // proper error handling instead of panic in your app
+		fmt.Errorf(comment+" %v", err)
+		panic(err.Error())
 	}
 }
